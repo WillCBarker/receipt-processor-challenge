@@ -19,3 +19,12 @@ class ProcessReceiptView(View):
         points = PointsCalculator.calculate_points(receipt_data)
         receipts[str(receipt_id)] = points
         return JsonResponse({"id": str(receipt_id)})
+    
+
+class GetPointsView(View):
+    def get(self, request, receipt_id, *args, **kwargs):
+        points = receipts.get(str(receipt_id))
+        if points is not None:
+            return JsonResponse({"points": points})
+        else:
+            return JsonResponse({"error": "Receipt not found"}, status=404)
