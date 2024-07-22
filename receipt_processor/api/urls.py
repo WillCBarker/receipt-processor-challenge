@@ -1,7 +1,8 @@
 from django.urls import path
-from . import views
+from .views import ProcessReceiptView, GetPointsView
+
 
 urlpatterns = [
-    path("receipts/process", views.process_receipt, name="process_receipt"),
-    path("receipts/<uuid:receipt_id>/points", views.get_points, name="get_points"),
+    path("receipts/process", ProcessReceiptView.as_view(), name="process_receipt"),
+    path("receipts/<uuid:receipt_id>/points", GetPointsView.as_view(), name="get_points"),
 ]
