@@ -31,8 +31,9 @@ class ProcessReceiptView(View):
         points = PointsCalculator.calculate_points(receipt_data)
         receipts[str(receipt_id)] = points
         return JsonResponse({"id": str(receipt_id)})
-    
 
+
+@method_decorator(csrf_exempt, name='dispatch')
 class GetPointsView(View):
     """
         GET /receipts/{id}/points
